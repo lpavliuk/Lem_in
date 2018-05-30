@@ -28,6 +28,7 @@
 # define ROOM lst->room
 # define X lst->x
 # define Y lst->y
+# define LINKS lst->links
 # define NEXT lst->next
 
 # define LINE lmn->line
@@ -36,6 +37,7 @@
 # define START lmn->start
 # define END lmn->end
 # define LINK lmn->link
+# define LINKS lst->links
 # define STR lmn->st
 # define EN lmn->en
 
@@ -44,6 +46,7 @@ typedef struct	s_lst
 	char			*room;
 	int				x;
 	int 			y;
+	char 			*links;
 	struct s_lst	*next;
 }				t_lst;
 
@@ -63,6 +66,8 @@ void			ft_error(char *error);
 void			check_input(t_lem *lmn, t_lst *lst);
 void			write_output(t_lem *lmn, char *str);
 void			write_room(t_lem *lmn, t_lst *lst);
+void			write_link(t_lem *lmn, t_lst *lst);
 t_lst			*lstnew(t_lst *lst);
+//int				listlen(t_lst *list);
 
 #endif

@@ -12,6 +12,21 @@
 
 #include "lemin.h"
 
+//int			listlen(t_lst *list)
+//{
+//	int i;
+//
+//	i = 0;
+//	if (!list)
+//		return (0);
+//	while (list)
+//	{
+//		list = list->next;
+//		i++;
+//	}
+//	return (i);
+//}
+
 t_lst		*lstnew(t_lst *lst)
 {
 	while (NEXT)
@@ -20,6 +35,7 @@ t_lst		*lstnew(t_lst *lst)
 	NEXT->room = NULL;
 	NEXT->x = 0;
 	NEXT->y = 0;
+	NEXT->links = NULL;
 	NEXT->next = NULL;
 	return (NEXT);
 }

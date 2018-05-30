@@ -26,6 +26,56 @@ static int 	digit_is(char *str)
 	return (1);
 }
 
+void		do_link(t_lst *lst, char *str)
+{
+	char	*tmp;
+
+	if (LINKS)
+	{
+		if (ft_strstr(LINKS, str))
+			return ;
+		tmp = LINKS;
+		LINKS = ft_strjoin(LINKS, str);
+		free(tmp);
+	}
+	else
+		LINKS = ft_strdup(str);
+	tmp = LINKS;
+	LINKS = ft_strjoin(LINKS, " ");
+	free(tmp);
+}
+
+void		write_link(t_lem *lmn, t_lst *lst)
+{
+	t_lst	*prev;
+	t_lst	*tmp;
+	char	**str;
+
+	prev = lst;
+	LINK++;
+	str = ft_strsplit(LINE, '-');
+	while (prev)
+	{
+		if (!ft_strcmp(prev->room, str[0]))
+		{
+			tmp = lst;
+			while (tmp)
+			{
+				if (!ft_strcmp(tmp->room, str[1]))
+				{
+					do_link(prev, str[1]);
+					do_link(tmp, str[0]);
+					write_output(lmn, LINE);
+					return ;
+				}
+				tmp = tmp->next;
+			}
+		}
+		prev = prev->next;
+	}
+	ft_error(ERR_7);
+}
+
 void		write_room(t_lem *lmn, t_lst *lst)
 {
 	int		i;
@@ -40,11 +90,7 @@ void		write_room(t_lem *lmn, t_lst *lst)
 		if (i == 0)
 			ROOM = ft_strdup(str[0]);
 		else if (!digit_is(str[i]))
-		{
-			ft_stralldel(str, i);
-			free(str);
 			ft_error(ERR_6);
-		}
 		if (i == 1)
 			X = ft_atoi(str[i]);
 		else if (i == 2)

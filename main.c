@@ -21,6 +21,7 @@ void		write_list(t_lst *lst)
 	{
 		ft_printf("room name: %s\n", ROOM);
 		ft_printf("x: %d\ny: %d\n", X, Y);
+		ft_printf("links: %s\n", LINKS);
 		lst = NEXT;
 	}
 }
@@ -45,7 +46,10 @@ void		write_output(t_lem *lmn, char *str)
 		free(tmp);
 	}
 	else
+	{
 		ft_printf(OUTPUT);
+		ft_printf("-----------------------------------\n"); //DELETE IT!
+	}
 }
 
 void		ft_error(char *error)
@@ -64,6 +68,7 @@ int			main(void)
 	ROOM = NULL;
 	X = 0;
 	Y = 0;
+	LINKS = NULL;
 	NEXT = NULL;
 	lmn = malloc(sizeof(t_lem));
 	LINE = NULL;

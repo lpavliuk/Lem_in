@@ -75,11 +75,11 @@ static int	check_room_or_link(t_lem *lmn, t_lst *lst, int i)
 	}
 	if (!def && space == 2 && !LINK)
 		write_room(lmn, lst);
-//	else if (!space && def == 1 && LINK++)
-//		write_link();
-	else if (def)
+	else if (!space && def == 1 && END && START)
+		write_link(lmn, lst);
+	else if (def && START && END)
 		ft_error(ERR_7);
-	else if (space)
+	else if (space && START && END)
 		ft_error(ERR_6);
 	else
 		return (1);
