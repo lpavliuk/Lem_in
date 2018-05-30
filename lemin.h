@@ -15,12 +15,13 @@
 
 # include "libft/libft.h"
 
-# define ERR_0 "{red}Error: {blue}Wrong number of ants!\n"
-# define ERR_1 "{red}Error: {blue}Wrong command {yellow}##start{blue}!\n"
-# define ERR_2 "{red}Error: {blue}Wrong command {yellow}##end{blue}!\n"
-# define ERR_3 "{red}Error: {blue}Command {yellow}##start {blue}was repeated!\n"
-# define ERR_4 "{red}Error: {blue}Command {yellow}##end {blue}was repeated!\n"
-# define ERR_5 "{red}Error: {blue}Command not found!\n"
+# define ERR_0 "{red}Error: {blue}wrong number of ants!\n"
+# define ERR_1 "{red}Error: {blue}wrong command {yellow}##start{blue}!\n"
+# define ERR_2 "{red}Error: {blue}wrong command {yellow}##end{blue}!\n"
+# define ERR_3 "{red}Error: {blue}command {yellow}##start {blue}was repeated!\n"
+# define ERR_4 "{red}Error: {blue}command {yellow}##end {blue}was repeated!\n"
+# define ERR_5 "{red}Error: {blue}command not found!\n"
+# define ERR_6 "{red}Error: {blue}not correct input the room!\n"
 
 # define LINE lmn->line
 # define NUM_A lmn->num_ants
@@ -34,5 +35,8 @@ typedef struct	s_lem
 	char	start;
 	char	end;
 }				t_lem;
+
+void			ft_error(t_lem *lmn, char *error);
+void			check_input(t_lem *lmn);
 
 #endif
