@@ -23,10 +23,23 @@
 # define ERR_5 "{red}Error: {blue}command not found!\n"
 # define ERR_6 "{red}Error: {blue}not correct input the room!\n"
 
+# define ROOM lst->room
+# define X lst->x
+# define Y lst->y
+# define NEXT lst->next
+
 # define LINE lmn->line
 # define NUM_A lmn->num_ants
 # define START lmn->start
 # define END lmn->end
+
+typedef struct	s_lst
+{
+	char			*room;
+	int				x;
+	int 			y;
+	struct s_lst	*next;
+}				t_lst;
 
 typedef struct	s_lem
 {
@@ -36,7 +49,7 @@ typedef struct	s_lem
 	char	end;
 }				t_lem;
 
-void			ft_error(t_lem *lmn, char *error);
-void			check_input(t_lem *lmn);
+void			ft_error(t_lem *lmn, t_lst *lst, char *error);
+void			check_input(t_lem *lmn, t_lst *lst);
 
 #endif
