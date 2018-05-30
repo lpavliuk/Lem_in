@@ -12,37 +12,73 @@
 
 #include "lemin.h"
 
-int 	only_digits(char *line)
+void	ft_error(t_lem *lmn, char *error)
+{
+	free(LINE);
+	free(lmn);
+	ft_printf(error);
+	exit(0);
+}
+
+void 	only_digits(t_lem *lmn)
 {
 	int i;
 
 	i = 0;
-	while (line[i] != '\0')
+	if (LINE[0] == '\0')
+		ft_error(lmn, ERR_0);
+	while (LINE[i] != '\0')
 	{
-		if (line[i] != ' ' && !ft_isdigit(line[i]))
-			return (1);
+		if (!ft_isdigit(LINE[i]))
+			ft_error(lmn, ERR_0);
 		i++;
 	}
-	return (0);
+	NUM_A = ft_atoi(LINE);
 }
 
-void	say_error(t_lem *lmn)
+void 	comnt_or_comnd(t_lem *lmn)
 {
-	free(LINE);
-	free(lmn);
-	ft_printf("Error!\n");
-	exit(0);
+	int		i;
+
+	i = 1;
+	if (LINE[i] == '#')
+	{
+		if (!ft_strcmp(LINE, "##start"))
+		{
+			if (START)
+				ft_error(lmn, ERR_3);
+			START++;
+		}
+		else if (!ft_strcmp(LINE, "##end"))
+		{
+			if (END)
+				ft_error(lmn, ERR_4);
+			END++;
+		}
+		else if (ft_strstr(LINE, "##start"))
+			ft_error(lmn, ERR_1);
+		else if (ft_strstr(LINE, "##end"))
+			ft_error(lmn, ERR_2);
+		else
+			ft_error(lmn, ERR_5);
+	}
 }
 
 void	check_input(t_lem *lmn)
 {
+	int i;
+
+	i = 0;
 	while (get_next_line(0, &LINE) > 0)
 	{
-		if (only_digits(LINE))
-			say_error(lmn);
-		COUNT = ft_atoi(LINE);
-		printf("count: %d\n", COUNT);
+		if (i == 0)
+			only_digits(lmn);
+		else if (LINE[0] == '#')
+			comnt_or_comnd(lmn);
+//		if (is_it_a_room)
+		printf("count: %d\n", NUM_A);
 		free(LINE);
+		i++;
 	}
 }
 
@@ -52,7 +88,9 @@ int		main(void)
 
 	lmn = malloc(sizeof(t_lem));
 	LINE = NULL;
-	COUNT = 0;
+	NUM_A = 0;
+	START = 0;
+	END = 0;
 
 	check_input(lmn);
 	return (0);

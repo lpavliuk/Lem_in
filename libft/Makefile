@@ -96,14 +96,17 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
+	@ printf "\e[37;1m[\e[33;1mlibft.a \e[37;1mis \e[32;1mREADY!\e[37;1m]\e[0m\n"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< -I ./
 
 clean:
 	@rm -f $(OBJ)
+	@ printf "\e[37;1m[\e[31;1m.o \e[37;1mfiles in \e[33;1mlibft/ \e[31;1mDELETED!\e[37;1m]\e[0m\n"
 
 fclean: clean
 	@rm -f $(NAME)
+	@ printf "\e[37;1m[\e[31;1mlibft.a \e[37;1min \e[33;1mlibft/ \e[31;1mDELETED!\e[37;1m]\e[0m\n"
 
 re: fclean all
