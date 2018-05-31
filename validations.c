@@ -70,10 +70,12 @@ static void	comnt_or_comnd(t_lem *lmn, t_lst *lst, int i)
 		else if (ft_strstr(LINE, "##end"))
 			ft_error(ERR_2);
 		else
-			ft_error(ERR_5);
+			write_output(lmn, LINE);
 	}
 	else if (!NUM_A && LINE[i] == '#')
 		ft_error(ERR_0);
+	else
+		write_output(lmn, LINE);
 }
 
 int			check_room_or_link(t_lem *lmn, t_lst *lst, int i)

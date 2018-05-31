@@ -58,6 +58,8 @@ void		write_link(t_lem *lmn, t_lst *lst)
 	prev = lst;
 	LINK++;
 	str = ft_strsplit(LINE, '-');
+	if (!str[1])
+		ft_error(ERR_7);
 	while (prev)
 	{
 		if (!ft_strcmp(prev->room, str[0]))

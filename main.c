@@ -53,7 +53,10 @@ void		write_list(t_lst *lst, t_lem *lmn)
 		ft_printf("room name: %s\n", ROOM);
 		ft_printf("N: %d\n", NUMBER);
 		ft_printf("x: %d\ny: %d\n", X, Y);
-		ft_printf("links: %s\n", LINKS);
+		if (LINKS)
+			ft_printf("links: %s\n", LINKS);
+		else
+			ft_printf("links: (null)\n");
 		lst = NEXT;
 	}
 	ft_printf("start room: %s\n", STR);
@@ -119,6 +122,8 @@ int			main(void)
 	X = 0;
 	Y = 0;
 	ANT = 0;
+	ITER = 0;
+	PREV = NULL;
 	LINKS = NULL;
 	NEXT = NULL;
 	lmn = malloc(sizeof(t_lem));

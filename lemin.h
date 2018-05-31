@@ -20,7 +20,6 @@
 # define ERR_2 "{red}Error: {blue}wrong command {yellow}##end{blue}!\n"
 # define ERR_3 "{red}Error: {blue}command {yellow}##start {blue}was repeated!\n"
 # define ERR_4 "{red}Error: {blue}command {yellow}##end {blue}was repeated!\n"
-# define ERR_5 "{red}Error: {blue}command not found!\n"
 # define ERR_6 "{red}Error: {blue}incorrect input {red}the room{blue}!\n"
 # define ERR_7 "{red}Error: {blue}incorrect input {red}the link{blue}!\n"
 # define ERR_8 "{red}Error: {blue}incorrect input!\n"
@@ -35,6 +34,8 @@
 # define Y lst->y
 # define NUMBER lst->number
 # define ANT lst->ant
+# define ITER lst->iter
+# define PREV lst->prev
 # define LINKS lst->links
 # define NEXT lst->next
 
@@ -54,6 +55,8 @@ typedef struct	s_lst
 	int				number;
 	int				x;
 	int				y;
+	int 			iter;
+	char 			*prev;
 	char			ant;
 	char			*links;
 	struct s_lst	*next;

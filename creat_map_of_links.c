@@ -48,11 +48,14 @@ static void	write_to_map(t_lem *lmn, t_lst *lst, int c, int i)
 			j = 0;
 			if (tmp->number == i)
 			{
-				str = ft_strsplit(tmp->links, ' ');
-				check_links(lmn, lst, str, i);
-				while (str[j] != 0)
-					free(str[j++]);
-				free(str);
+				if (tmp->links)
+				{
+					str = ft_strsplit(tmp->links, ' ');
+					check_links(lmn, lst, str, i);
+					while (str[j] != 0)
+						free(str[j++]);
+					free(str);
+				}
 			}
 			tmp = tmp->next;
 		}
