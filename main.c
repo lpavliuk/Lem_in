@@ -75,6 +75,11 @@ void		ft_error(char *error)
 	exit(0);
 }
 
+//static void	creat_map_of_links(t_lem *lmn, t_lst *lst)
+//{
+//
+//}
+
 int			main(void)
 {
 	t_lem *lmn;
@@ -84,6 +89,7 @@ int			main(void)
 	ROOM = NULL;
 	X = 0;
 	Y = 0;
+	ANT = 0;
 	LINKS = NULL;
 	NEXT = NULL;
 	lmn = malloc(sizeof(t_lem));
@@ -95,6 +101,7 @@ int			main(void)
 	LINK = 0;
 	STR = 0;
 	EN = 0;
+	MAP = NULL;
 	check_input(lmn, lst);
 	write_output(lmn, NULL);
 	write_list(lst, lmn);

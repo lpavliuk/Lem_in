@@ -36,24 +36,24 @@ static void	start_and_end(t_lem *lmn, t_lst *lst, char st)
 		if (START)
 			ft_error(ERR_3);
 		write_output(lmn, LINE);
-		START++;
 		free(LINE);
 		if (get_next_line(0, &LINE) == 0 && LINE[0] == '\0')
 			ft_error(ERR_11);
 		if (++STR && check_room_or_link(lmn, lst, 0))
 			ft_error(ERR_11);
+		START++;
 	}
 	else
 	{
 		if (END)
 			ft_error(ERR_4);
 		write_output(lmn, LINE);
-		END++;
 		free(LINE);
 		if (get_next_line(0, &LINE) == 0 && LINE[0] == '\0')
 			ft_error(ERR_12);
 		if (++EN && check_room_or_link(lmn, lst, 0))
 			ft_error(ERR_12);
+		END++;
 	}
 }
 

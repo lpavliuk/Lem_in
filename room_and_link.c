@@ -19,7 +19,7 @@ static void	do_link(t_lst *lst, char *str)
 	if (LINKS)
 	{
 		if (ft_strstr(LINKS, str))
-			return ;
+			ft_error(ERR_13);
 		tmp = LINKS;
 		LINKS = ft_strjoin(LINKS, str);
 		free(tmp);

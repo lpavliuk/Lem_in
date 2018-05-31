@@ -28,10 +28,12 @@
 # define ERR_10 "{red}Error: {blue}coordinates for room is {red}repeating!\n"
 # define ERR_11 "{red}Error: {blue}incorrect input {red}the start room{blue}!\n"
 # define ERR_12 "{red}Error: {blue}incorrect input {red}the end room{blue}!\n"
+# define ERR_13 "{red}Error: {blue}links for room is {red}repeating!\n"
 
 # define ROOM lst->room
 # define X lst->x
 # define Y lst->y
+# define ANT lst->ant
 # define LINKS lst->links
 # define NEXT lst->next
 
@@ -43,12 +45,14 @@
 # define LINK lmn->link
 # define STR lmn->st
 # define EN lmn->en
+# define MAP lmn->map
 
 typedef struct	s_lst
 {
 	char			*room;
 	int				x;
 	int				y;
+	char 			ant;
 	char			*links;
 	struct s_lst	*next;
 }				t_lst;
@@ -63,6 +67,7 @@ typedef struct	s_lem
 	char	*output;
 	char	*st;
 	char	*en;
+	char 	**map;
 }				t_lem;
 
 void			ft_error(char *error);
