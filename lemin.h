@@ -26,6 +26,8 @@
 # define ERR_8 "{red}Error: {blue}incorrect input!\n"
 # define ERR_9 "{red}Error: {blue}name for room is {red}repeating!\n"
 # define ERR_10 "{red}Error: {blue}coordinates for room is {red}repeating!\n"
+# define ERR_11 "{red}Error: {blue}incorrect input {red}the start room{blue}!\n"
+# define ERR_12 "{red}Error: {blue}incorrect input {red}the end room{blue}!\n"
 
 # define ROOM lst->room
 # define X lst->x
@@ -39,7 +41,6 @@
 # define START lmn->start
 # define END lmn->end
 # define LINK lmn->link
-# define LINKS lst->links
 # define STR lmn->st
 # define EN lmn->en
 
@@ -65,11 +66,13 @@ typedef struct	s_lem
 }				t_lem;
 
 void			ft_error(char *error);
+int				digit_is(char *str);
 void			check_input(t_lem *lmn, t_lst *lst);
 void			write_output(t_lem *lmn, char *str);
 void			write_room(t_lem *lmn, t_lst *lst);
 void			write_link(t_lem *lmn, t_lst *lst);
 t_lst			*lstnew(t_lst *lst);
 void			check_room_in_list(t_lst *lst, t_lst *new);
+int				check_room_or_link(t_lem *lmn, t_lst *lst, int i);
 
 #endif

@@ -12,20 +12,6 @@
 
 #include "lemin.h"
 
-static int	digit_is(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (!isdigit(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 static void	do_link(t_lst *lst, char *str)
 {
 	char	*tmp;
@@ -85,6 +71,24 @@ void		write_link(t_lem *lmn, t_lst *lst)
 	ft_error(ERR_7);
 }
 
+static void	while_str(t_lem *lmn, t_lst *lst, char **str, int i)
+{
+	if (i == 0)
+	{
+		ROOM = ft_strdup(str[0]);
+		if ((int)STR == 1)
+			STR = ROOM;
+		if ((int)EN == 1)
+			EN = ROOM;
+	}
+	else if (!digit_is(str[i]))
+		ft_error(ERR_6);
+	if (i == 1)
+		X = ft_atoi(str[i]);
+	else if (i == 2)
+		Y = ft_atoi(str[i]);
+}
+
 void		write_room(t_lem *lmn, t_lst *lst)
 {
 	int		i;
@@ -98,14 +102,7 @@ void		write_room(t_lem *lmn, t_lst *lst)
 	str = ft_strsplit(LINE, ' ');
 	while (str[i] != 0)
 	{
-		if (i == 0)
-			ROOM = ft_strdup(str[0]);
-		else if (!digit_is(str[i]))
-			ft_error(ERR_6);
-		if (i == 1)
-			X = ft_atoi(str[i]);
-		else if (i == 2)
-			Y = ft_atoi(str[i]);
+		while_str(lmn, lst, str, i);
 		i++;
 	}
 	check_room_in_list(all, lst);

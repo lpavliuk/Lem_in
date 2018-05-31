@@ -15,7 +15,7 @@
 /************************************************
  *  CHECK LIST! DELETE IT LATER!
  ************************************************/
-void		write_list(t_lst *lst)
+void		write_list(t_lst *lst, t_lem *lmn)
 {
 	while (lst)
 	{
@@ -24,8 +24,24 @@ void		write_list(t_lst *lst)
 		ft_printf("links: %s\n", LINKS);
 		lst = NEXT;
 	}
+	ft_printf("start room: %s\n", STR);
+	ft_printf("end room: %s\n", EN);
 }
 /************************************************/
+
+int			digit_is(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (!isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void		write_output(t_lem *lmn, char *str)
 {
@@ -77,9 +93,11 @@ int			main(void)
 	START = 0;
 	END = 0;
 	LINK = 0;
+	STR = 0;
+	EN = 0;
 	check_input(lmn, lst);
 	write_output(lmn, NULL);
-	write_list(lst);
+	write_list(lst, lmn);
 //	system("leaks lem-in");
 	return (0);
 }

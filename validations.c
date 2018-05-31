@@ -29,24 +29,42 @@ static void	only_digits(t_lem *lmn, t_lst *lst)
 	write_output(lmn, LINE);
 }
 
+static void	start_and_end(t_lem *lmn, t_lst *lst, char st)
+{
+	if (st)
+	{
+		if (START)
+			ft_error(ERR_3);
+		write_output(lmn, LINE);
+		START++;
+		free(LINE);
+		if (get_next_line(0, &LINE) == 0 && LINE[0] == '\0')
+			ft_error(ERR_11);
+		if (++STR && check_room_or_link(lmn, lst, 0))
+			ft_error(ERR_11);
+	}
+	else
+	{
+		if (END)
+			ft_error(ERR_4);
+		write_output(lmn, LINE);
+		END++;
+		free(LINE);
+		if (get_next_line(0, &LINE) == 0 && LINE[0] == '\0')
+			ft_error(ERR_12);
+		if (++EN && check_room_or_link(lmn, lst, 0))
+			ft_error(ERR_12);
+	}
+}
+
 static void	comnt_or_comnd(t_lem *lmn, t_lst *lst, int i)
 {
 	if (NUM_A && LINE[i] == '#')
 	{
 		if (!ft_strcmp(LINE, "##start"))
-		{
-			if (START)
-				ft_error(ERR_3);
-			write_output(lmn, LINE);
-			START++;
-		}
+			start_and_end(lmn, lst, 1);
 		else if (!ft_strcmp(LINE, "##end"))
-		{
-			if (END)
-				ft_error(ERR_4);
-			write_output(lmn, LINE);
-			END++;
-		}
+			start_and_end(lmn, lst, 0);
 		else if (ft_strstr(LINE, "##start"))
 			ft_error(ERR_1);
 		else if (ft_strstr(LINE, "##end"))
@@ -58,7 +76,7 @@ static void	comnt_or_comnd(t_lem *lmn, t_lst *lst, int i)
 		ft_error(ERR_0);
 }
 
-static int	check_room_or_link(t_lem *lmn, t_lst *lst, int i)
+int			check_room_or_link(t_lem *lmn, t_lst *lst, int i)
 {
 	int	def;
 	int	space;
@@ -102,4 +120,6 @@ void		check_input(t_lem *lmn, t_lst *lst)
 		free(LINE);
 		i++;
 	}
+	if (!LINK)
+		ft_error(ERR_8);
 }
