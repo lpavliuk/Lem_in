@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-static int 	digit_is(char *str)
+static int	digit_is(char *str)
 {
 	int i;
 
@@ -26,7 +26,7 @@ static int 	digit_is(char *str)
 	return (1);
 }
 
-void		do_link(t_lst *lst, char *str)
+static void	do_link(t_lst *lst, char *str)
 {
 	char	*tmp;
 
@@ -45,6 +45,24 @@ void		do_link(t_lst *lst, char *str)
 	free(tmp);
 }
 
+static int	while_tmp(t_lem *lmn, t_lst *prev, t_lst *tmp, char **str)
+{
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->room, str[1]))
+		{
+			do_link(prev, str[1]);
+			do_link(tmp, str[0]);
+			write_output(lmn, LINE);
+			ft_stralldel(str, 3);
+			free(str);
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 void		write_link(t_lem *lmn, t_lst *lst)
 {
 	t_lst	*prev;
@@ -59,17 +77,8 @@ void		write_link(t_lem *lmn, t_lst *lst)
 		if (!ft_strcmp(prev->room, str[0]))
 		{
 			tmp = lst;
-			while (tmp)
-			{
-				if (!ft_strcmp(tmp->room, str[1]))
-				{
-					do_link(prev, str[1]);
-					do_link(tmp, str[0]);
-					write_output(lmn, LINE);
-					return ;
-				}
-				tmp = tmp->next;
-			}
+			if (while_tmp(lmn, prev, tmp, str))
+				return ;
 		}
 		prev = prev->next;
 	}
@@ -80,8 +89,10 @@ void		write_room(t_lem *lmn, t_lst *lst)
 {
 	int		i;
 	char	**str;
+	t_lst	*all;
 
 	i = 0;
+	all = lst;
 	if (ROOM != NULL)
 		lst = lstnew(lst);
 	str = ft_strsplit(LINE, ' ');
@@ -97,6 +108,7 @@ void		write_room(t_lem *lmn, t_lst *lst)
 			Y = ft_atoi(str[i]);
 		i++;
 	}
+	check_room_in_list(all, lst);
 	write_output(lmn, LINE);
 	ft_stralldel(str, i);
 	free(str);

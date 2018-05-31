@@ -60,8 +60,8 @@ static void	comnt_or_comnd(t_lem *lmn, t_lst *lst, int i)
 
 static int	check_room_or_link(t_lem *lmn, t_lst *lst, int i)
 {
-	int 	def;
-	int 	space;
+	int	def;
+	int	space;
 
 	def = 0;
 	space = 0;

@@ -12,21 +12,6 @@
 
 #include "lemin.h"
 
-//int			listlen(t_lst *list)
-//{
-//	int i;
-//
-//	i = 0;
-//	if (!list)
-//		return (0);
-//	while (list)
-//	{
-//		list = list->next;
-//		i++;
-//	}
-//	return (i);
-//}
-
 t_lst		*lstnew(t_lst *lst)
 {
 	while (NEXT)
@@ -40,4 +25,15 @@ t_lst		*lstnew(t_lst *lst)
 	return (NEXT);
 }
 
-
+void		check_room_in_list(t_lst *lst, t_lst *new)
+{
+	while (NEXT)
+	{
+		if (!ft_strcmp(ROOM, new->room))
+			ft_error(ERR_9);
+		else if (X == new->x && Y == new->y)
+			ft_error(ERR_10);
+		else
+			lst = NEXT;
+	}
+}
