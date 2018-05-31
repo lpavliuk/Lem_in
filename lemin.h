@@ -33,6 +33,7 @@
 # define ROOM lst->room
 # define X lst->x
 # define Y lst->y
+# define NUMBER lst->number
 # define ANT lst->ant
 # define LINKS lst->links
 # define NEXT lst->next
@@ -50,9 +51,10 @@
 typedef struct	s_lst
 {
 	char			*room;
+	int				number;
 	int				x;
 	int				y;
-	char 			ant;
+	char			ant;
 	char			*links;
 	struct s_lst	*next;
 }				t_lst;
@@ -67,7 +69,7 @@ typedef struct	s_lem
 	char	*output;
 	char	*st;
 	char	*en;
-	char 	**map;
+	char	**map;
 }				t_lem;
 
 void			ft_error(char *error);
@@ -77,7 +79,9 @@ void			write_output(t_lem *lmn, char *str);
 void			write_room(t_lem *lmn, t_lst *lst);
 void			write_link(t_lem *lmn, t_lst *lst);
 t_lst			*lstnew(t_lst *lst);
+int				lstlen(t_lst *lst);
 void			check_room_in_list(t_lst *lst, t_lst *new);
 int				check_room_or_link(t_lem *lmn, t_lst *lst, int i);
+void			creat_map_of_links(t_lem *lmn, t_lst *lst, int i);
 
 #endif

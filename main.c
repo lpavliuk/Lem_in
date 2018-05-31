@@ -15,17 +15,50 @@
 /************************************************
  *  CHECK LIST! DELETE IT LATER!
  ************************************************/
+void		write_map(t_lem *lmn, t_lst *lst)
+{
+	int i;
+	int j;
+	int c;
+
+	i = 0;
+	j = 0;
+	c = lstlen(lst);
+	ft_printf("   ");
+	while (j < c)
+		ft_printf("%-2d", j++);
+	ft_printf("\n");
+	ft_printf("   ");
+	j = 0;
+	while (j < c)
+		ft_printf("- ", j++);
+	ft_printf("\n");
+	while (MAP[i] != 0)
+	{
+		j = 0;
+		ft_printf("%i |", i);
+		while (j < c)
+			ft_printf("%-2d", MAP[i][j++]);
+		ft_printf("\n");
+		i++;
+	}
+}
 void		write_list(t_lst *lst, t_lem *lmn)
 {
+	t_lst *tmp;
+
+	tmp = lst;
 	while (lst)
 	{
 		ft_printf("room name: %s\n", ROOM);
+		ft_printf("N: %d\n", NUMBER);
 		ft_printf("x: %d\ny: %d\n", X, Y);
 		ft_printf("links: %s\n", LINKS);
 		lst = NEXT;
 	}
 	ft_printf("start room: %s\n", STR);
 	ft_printf("end room: %s\n", EN);
+	write_map(lmn, tmp);
 }
 /************************************************/
 
@@ -75,11 +108,6 @@ void		ft_error(char *error)
 	exit(0);
 }
 
-//static void	creat_map_of_links(t_lem *lmn, t_lst *lst)
-//{
-//
-//}
-
 int			main(void)
 {
 	t_lem *lmn;
@@ -87,6 +115,7 @@ int			main(void)
 
 	lst = malloc(sizeof(t_lst));
 	ROOM = NULL;
+	NUMBER = 0;
 	X = 0;
 	Y = 0;
 	ANT = 0;
@@ -103,6 +132,7 @@ int			main(void)
 	EN = 0;
 	MAP = NULL;
 	check_input(lmn, lst);
+	creat_map_of_links(lmn, lst, 0);
 	write_output(lmn, NULL);
 	write_list(lst, lmn);
 //	system("leaks lem-in");

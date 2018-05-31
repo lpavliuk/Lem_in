@@ -18,6 +18,7 @@ t_lst		*lstnew(t_lst *lst)
 		lst = NEXT;
 	NEXT = malloc(sizeof(t_lst));
 	NEXT->room = NULL;
+	NEXT->number = 0;
 	NEXT->x = 0;
 	NEXT->y = 0;
 	NEXT->ant = 0;
@@ -37,4 +38,19 @@ void		check_room_in_list(t_lst *lst, t_lst *new)
 		else
 			lst = NEXT;
 	}
+}
+
+int			lstlen(t_lst *lst)
+{
+	int i;
+
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
