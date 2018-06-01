@@ -28,6 +28,7 @@
 # define ERR_11 "{red}Error: {blue}incorrect input {red}the start room{blue}!\n"
 # define ERR_12 "{red}Error: {blue}incorrect input {red}the end room{blue}!\n"
 # define ERR_13 "{red}Error: {blue}links for room is {red}repeating!\n"
+# define ERR_14 "{red}Error: {yellow}there isn't links between start & end!\n"
 
 # define ROOM lst->room
 # define X lst->x
@@ -47,7 +48,6 @@
 # define START lmn->start
 # define END lmn->end
 # define LINK lmn->link
-# define COUNT lmn->count
 
 typedef struct	s_lst
 {
@@ -69,7 +69,6 @@ typedef struct	s_lem
 	char	*line;
 	char	start;
 	char	end;
-	int 	count;
 	char	link;
 	char	*output;
 	int		num_ants;

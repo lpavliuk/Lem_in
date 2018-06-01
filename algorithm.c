@@ -25,74 +25,49 @@ void		freeshka_str(char **str)
 	free(str);
 }
 
-static int	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
+static void	check_end(t_lst *lst)
 {
-	int		i;
+	while (lst)
+	{
+		if (EN == 1)
+		{
+			if (ITER == 0)
+				ft_error(ERR_14);
+		}
+		lst = NEXT;
+	}
+}
+
+static void	find_way(t_lem *lmn, t_lst *lst, t_lst *all, int i)
+{
 	char	**str;
 	t_lst	*tmp;
 
-	if (EN == 1)
-		return (1);
-	if (!LINKS)
-		return (0);
-	i = 0;
+	if (EN == 1 || !LINKS)
+		return ;
 	str = ft_strsplit(LINKS, ' ');
 	while (str[i] != 0)
 	{
-//		ft_printf("str: %s\n", str[i]);
 		tmp = all;
 		while (tmp)
 		{
-			if (!ft_strcmp(tmp->room, str[i]) && tmp->en == 1)
-			{
-				tmp->iter = ITER + 1;
-				tmp->prev = ROOM;
-				if (!COUNT)
-					tmp->iter = ITER + 1;
-				if (COUNT < ITER + 1)
-					return (0);
-				ft_printf("%s - ", ROOM);
-				if (find_way(lmn, tmp, all))
-				{
-					freeshka_str(str);
-					return (1);
-				}
-			}
-			tmp = tmp->next;
-		}
-		i++;
-	}
-	i = 0;
-	while (str[i] != 0)
-	{
-		tmp = all;
-		while (tmp)
-		{
-			if (!ft_strcmp(tmp->room, str[i]) && tmp->str != 1
+			if (!ft_strcmp(tmp->room, str[i]) && (tmp->en == 1 || (tmp->str != 1
 				&& ft_strcmp(ROOM, str[i])
-				&& ((PREV && ft_strcmp(PREV, str[i])) || !PREV))
+				&& ((PREV && ft_strcmp(PREV, str[i])) || !PREV))))
 			{
 				tmp->iter = ITER + 1;
 				tmp->prev = ROOM;
-				ft_printf("%s - ", ROOM);
-//				find_way(lmn, tmp, all);
-				if (find_way(lmn, tmp, all))
-				{
-					freeshka_str(str);
-					return (1);
-				}
+				find_way(lmn, tmp, all, 0);
 			}
 			tmp = tmp->next;
 		}
 		i++;
 	}
 	freeshka_str(str);
-	return (0);
 }
 
-void	algorithm(t_lem *lmn, t_lst *lst)
+void		algorithm(t_lem *lmn, t_lst *lst)
 {
-
 	t_lst	*tmp;
 
 	tmp = lst;
@@ -102,8 +77,6 @@ void	algorithm(t_lem *lmn, t_lst *lst)
 			break ;
 		tmp = tmp->next;
 	}
-	if (find_way(lmn, tmp, lst))
-		ft_printf("\nFIND: 1\n");
-	else
-		ft_printf("\nFIND: 0\n");
+	find_way(lmn, tmp, lst, 0);
+	check_end(lst);
 }
