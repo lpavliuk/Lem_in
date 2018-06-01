@@ -38,6 +38,8 @@
 # define PREV lst->prev
 # define LINKS lst->links
 # define NEXT lst->next
+# define EN lst->en
+# define STR lst->str
 
 # define LINE lmn->line
 # define OUTPUT lmn->output
@@ -45,34 +47,32 @@
 # define START lmn->start
 # define END lmn->end
 # define LINK lmn->link
-# define STR lmn->st
-# define EN lmn->en
 # define MAP lmn->map
 
 typedef struct	s_lst
 {
 	char			*room;
+	char			ant;
+	char			*links;
 	int				number;
 	int				x;
 	int				y;
 	int 			iter;
+	char			str;
+	char			en;
 	char 			*prev;
-	char			ant;
-	char			*links;
 	struct s_lst	*next;
 }				t_lst;
 
 typedef struct	s_lem
 {
 	char	*line;
-	int		num_ants;
 	char	start;
 	char	end;
 	char	link;
 	char	*output;
-	char	*st;
-	char	*en;
 	char	**map;
+	int		num_ants;
 }				t_lem;
 
 void			ft_error(char *error);
@@ -86,5 +86,6 @@ int				lstlen(t_lst *lst);
 void			check_room_in_list(t_lst *lst, t_lst *new);
 int				check_room_or_link(t_lem *lmn, t_lst *lst, int i);
 void			creat_map_of_links(t_lem *lmn, t_lst *lst, int i);
+void			algorithm(t_lem *lmn, t_lst *lst);
 
 #endif

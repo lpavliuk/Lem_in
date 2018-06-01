@@ -81,9 +81,9 @@ void		creat_map_of_links(t_lem *lmn, t_lst *lst, int i)
 	i = 1;
 	while (lst)
 	{
-		if (ROOM == STR)
+		if (STR == 1)
 			NUMBER = 0;
-		else if (ROOM == EN)
+		else if (EN == 1)
 			NUMBER = c - 1;
 		else
 			NUMBER = i++;

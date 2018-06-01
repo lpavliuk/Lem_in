@@ -78,10 +78,10 @@ static void	while_str(t_lem *lmn, t_lst *lst, char **str, int i)
 	if (i == 0)
 	{
 		ROOM = ft_strdup(str[0]);
-		if ((int)STR == 1)
-			STR = ROOM;
-		if ((int)EN == 1)
-			EN = ROOM;
+		if ((int)START == 1 && ++START)
+			STR = 1;
+		if ((int)END == 1 && ++END)
+			EN = 1;
 	}
 	else if (!digit_is(str[i]))
 		ft_error(ERR_6);

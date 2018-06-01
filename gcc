@@ -1,1 +1,1 @@
-gcc main.c work_with_list.c creat_map_of_links.c room_and_link.c validations.c libft/libft.a -o lem-in -I ./
+gcc main.c algorithm.c work_with_list.c creat_map_of_links.c room_and_link.c validations.c libft/libft.a -o lem-in -I ./

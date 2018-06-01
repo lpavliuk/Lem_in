@@ -39,9 +39,8 @@ static void	start_and_end(t_lem *lmn, t_lst *lst, char st)
 		free(LINE);
 		if (get_next_line(0, &LINE) == 0 && LINE[0] == '\0')
 			ft_error(ERR_11);
-		if (++STR && check_room_or_link(lmn, lst, 0))
+		if (++START && check_room_or_link(lmn, lst, 0))
 			ft_error(ERR_11);
-		START++;
 	}
 	else
 	{
@@ -51,9 +50,8 @@ static void	start_and_end(t_lem *lmn, t_lst *lst, char st)
 		free(LINE);
 		if (get_next_line(0, &LINE) == 0 && LINE[0] == '\0')
 			ft_error(ERR_12);
-		if (++EN && check_room_or_link(lmn, lst, 0))
+		if (++END && check_room_or_link(lmn, lst, 0))
 			ft_error(ERR_12);
-		END++;
 	}
 }
 

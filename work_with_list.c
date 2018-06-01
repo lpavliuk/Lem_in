@@ -21,6 +21,8 @@ t_lst		*lstnew(t_lst *lst)
 	NEXT->number = 0;
 	NEXT->x = 0;
 	NEXT->y = 0;
+	NEXT->str = 0;
+	NEXT->en = 0;
 	NEXT->ant = 0;
 	NEXT->iter = 0;
 	NEXT->prev = NULL;

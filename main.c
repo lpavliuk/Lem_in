@@ -53,14 +53,14 @@ void		write_list(t_lst *lst, t_lem *lmn)
 		ft_printf("room name: %s\n", ROOM);
 		ft_printf("N: %d\n", NUMBER);
 		ft_printf("x: %d\ny: %d\n", X, Y);
+		ft_printf("start room: %d\n", STR);
+		ft_printf("end room: %d\n", EN);
 		if (LINKS)
 			ft_printf("links: %s\n", LINKS);
 		else
 			ft_printf("links: (null)\n");
 		lst = NEXT;
 	}
-	ft_printf("start room: %s\n", STR);
-	ft_printf("end room: %s\n", EN);
 	write_map(lmn, tmp);
 }
 /************************************************/
@@ -122,6 +122,8 @@ int			main(void)
 	X = 0;
 	Y = 0;
 	ANT = 0;
+	STR = 0;
+	EN = 0;
 	ITER = 0;
 	PREV = NULL;
 	LINKS = NULL;
@@ -130,14 +132,14 @@ int			main(void)
 	LINE = NULL;
 	OUTPUT = NULL;
 	NUM_A = 0;
+	LINK = 0;
 	START = 0;
 	END = 0;
-	LINK = 0;
-	STR = 0;
-	EN = 0;
 	MAP = NULL;
 	check_input(lmn, lst);
 	creat_map_of_links(lmn, lst, 0);
+	algorithm(lmn, lst);
+	ft_printf("OK!\n");
 	write_output(lmn, NULL);
 	write_list(lst, lmn);
 //	system("leaks lem-in");
