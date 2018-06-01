@@ -118,6 +118,6 @@ int			main(void)
 //	write_output(lmn, NULL);
 	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 	write_list(lst, lmn);
-//	system("leaks lem-in");
+	system("leaks lem-in");
 	return (0);
 }

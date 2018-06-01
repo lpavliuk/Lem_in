@@ -12,17 +12,20 @@
 
 #include "lemin.h"
 
-static void	freeshka_str(char **str)
+void		freeshka_str(char **str)
 {
 	int i;
 
 	i = 0;
 	while (str[i] != 0)
-		free(str[i++]);
+	{
+		free(str[i]);
+		i++;
+	}
 	free(str);
 }
 
-int 	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
+static int	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 {
 	int		i;
 	char	**str;
@@ -44,9 +47,11 @@ int 	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 				tmp->iter = ITER + 1;
 				tmp->prev = ROOM;
 				ft_printf("%s - ", ROOM);
-				freeshka_str(str);
 				if (find_way(lmn, tmp, all))
+				{
+					freeshka_str(str);
 					return (1);
+				}
 			}
 			tmp = tmp->next;
 		}
@@ -58,20 +63,24 @@ int 	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 		tmp = all;
 		while (tmp)
 		{
-			if (!ft_strcmp(tmp->room, str[i]) && tmp->str != 1 && ft_strcmp(ROOM, str[i])
+			if (!ft_strcmp(tmp->room, str[i]) && tmp->str != 1
+				&& ft_strcmp(ROOM, str[i])
 				&& ((PREV && ft_strcmp(PREV, str[i])) || !PREV))
 			{
 				tmp->iter = ITER + 1;
 				tmp->prev = ROOM;
 				ft_printf("%s - ", ROOM);
-				freeshka_str(str);
 				if (find_way(lmn, tmp, all))
+				{
+					freeshka_str(str);
 					return (1);
+				}
 			}
 			tmp = tmp->next;
 		}
 		i++;
 	}
+	freeshka_str(str);
 	return (0);
 }
 

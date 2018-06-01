@@ -14,12 +14,21 @@
 
 static void	do_link(t_lst *lst, char *str)
 {
+	int		i;
 	char	*tmp;
+	char	**linki;
 
+	i = 0;
 	if (LINKS)
 	{
-		if (ft_strstr(LINKS, str))
-			ft_error(ERR_13);
+		linki = ft_strsplit(LINKS, ' ');
+		while (linki[i] != 0)
+		{
+			if (!ft_strcmp(linki[i], str))
+				ft_error(ERR_13);
+			i++;
+		}
+		freeshka_str(linki);
 		tmp = LINKS;
 		LINKS = ft_strjoin(LINKS, str);
 		free(tmp);
@@ -40,8 +49,7 @@ static int	while_tmp(t_lem *lmn, t_lst *prev, t_lst *tmp, char **str)
 			do_link(prev, str[1]);
 			do_link(tmp, str[0]);
 			write_output(lmn, LINE);
-			ft_stralldel(str, 3);
-			free(str);
+			freeshka_str(str);
 			return (1);
 		}
 		tmp = tmp->next;
@@ -109,6 +117,5 @@ void		write_room(t_lem *lmn, t_lst *lst)
 	}
 	check_room_in_list(all, lst);
 	write_output(lmn, LINE);
-	ft_stralldel(str, i);
-	free(str);
+	freeshka_str(str);
 }

@@ -106,9 +106,6 @@ int			check_room_or_link(t_lem *lmn, t_lst *lst, int i)
 
 void		check_input(t_lem *lmn, t_lst *lst)
 {
-	int i;
-
-	i = 0;
 	while (get_next_line(0, &LINE) > 0)
 	{
 		if (!NUM_A && LINE[0] != '#')
@@ -118,7 +115,6 @@ void		check_input(t_lem *lmn, t_lst *lst)
 		else if (check_room_or_link(lmn, lst, 0))
 			ft_error(ERR_8);
 		free(LINE);
-		i++;
 	}
 	if (!LINK)
 		ft_error(ERR_8);
