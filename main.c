@@ -112,6 +112,8 @@ int			main(void)
 	LINK = 0;
 	START = 0;
 	END = 0;
+	ROAD = 0;
+//	COUNT = 0;
 	check_input(lmn, lst);
 //	creat_map_of_links(lmn, lst, 0);
 	algorithm(lmn, lst);

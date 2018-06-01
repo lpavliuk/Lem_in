@@ -48,6 +48,8 @@
 # define START lmn->start
 # define END lmn->end
 # define LINK lmn->link
+# define ROAD lmn->road
+//# define COUNT lmn->count
 
 typedef struct	s_lst
 {
@@ -72,6 +74,8 @@ typedef struct	s_lem
 	char	link;
 	char	*output;
 	int		num_ants;
+	char 	**road;
+//	int 	count;
 }				t_lem;
 
 void			ft_error(char *error);
@@ -84,7 +88,7 @@ t_lst			*lstnew(t_lst *lst);
 int				lstlen(t_lst *lst);
 void			check_room_in_list(t_lst *lst, t_lst *new);
 int				check_room_or_link(t_lem *lmn, t_lst *lst, int i);
-void			creat_map_of_links(t_lem *lmn, t_lst *lst, int i);
+//void			creat_map_of_links(t_lem *lmn, t_lst *lst, int i);
 void			algorithm(t_lem *lmn, t_lst *lst);
 void			freeshka_str(char **str);
 
