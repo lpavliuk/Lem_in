@@ -15,34 +15,6 @@
 /************************************************
  *  CHECK LIST! DELETE IT LATER!
  ************************************************/
-void		write_map(t_lem *lmn, t_lst *lst)
-{
-	int i;
-	int j;
-	int c;
-
-	i = 0;
-	j = 0;
-	c = lstlen(lst);
-	ft_printf("   ");
-	while (j < c)
-		ft_printf("%-2d", j++);
-	ft_printf("\n");
-	ft_printf("   ");
-	j = 0;
-	while (j < c)
-		ft_printf("- ", j++);
-	ft_printf("\n");
-	while (MAP[i] != 0)
-	{
-		j = 0;
-		ft_printf("%i |", i);
-		while (j < c)
-			ft_printf("%-2d", MAP[i][j++]);
-		ft_printf("\n");
-		i++;
-	}
-}
 void		write_list(t_lst *lst, t_lem *lmn)
 {
 	t_lst *tmp;
@@ -50,18 +22,26 @@ void		write_list(t_lst *lst, t_lem *lmn)
 	tmp = lst;
 	while (lst)
 	{
-		ft_printf("room name: %s\n", ROOM);
-		ft_printf("N: %d\n", NUMBER);
-		ft_printf("x: %d\ny: %d\n", X, Y);
-		ft_printf("start room: %d\n", STR);
-		ft_printf("end room: %d\n", EN);
+		if (STR)
+			ft_printf("START!\n");
+		if (EN)
+			ft_printf("END!\n");
+		ft_printf("---------[%s]--------\n", ROOM);
+//		ft_printf("N: %d\n", NUMBER);
+//		ft_printf("x: %d\ny: %d\n", X, Y);
+		if (STR)
+			ft_printf("start: %d\n", STR);
+		if (EN)
+			ft_printf("end: %d\n", EN);
+		ft_printf("prev room: %s\n", PREV);
+		ft_printf("iter: %d\n", ITER);
 		if (LINKS)
 			ft_printf("links: %s\n", LINKS);
 		else
 			ft_printf("links: (null)\n");
+		ft_printf("-----------------------------------\n");
 		lst = NEXT;
 	}
-	write_map(lmn, tmp);
 }
 /************************************************/
 
@@ -98,10 +78,7 @@ void		write_output(t_lem *lmn, char *str)
 		free(tmp);
 	}
 	else
-	{
 		ft_printf(OUTPUT);
-		ft_printf("-----------------------------------\n"); //DELETE IT!
-	}
 }
 
 void		ft_error(char *error)
@@ -135,12 +112,11 @@ int			main(void)
 	LINK = 0;
 	START = 0;
 	END = 0;
-	MAP = NULL;
 	check_input(lmn, lst);
-	creat_map_of_links(lmn, lst, 0);
+//	creat_map_of_links(lmn, lst, 0);
 	algorithm(lmn, lst);
-	ft_printf("OK!\n");
-	write_output(lmn, NULL);
+//	write_output(lmn, NULL);
+	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 	write_list(lst, lmn);
 //	system("leaks lem-in");
 	return (0);

@@ -47,7 +47,6 @@
 # define START lmn->start
 # define END lmn->end
 # define LINK lmn->link
-# define MAP lmn->map
 
 typedef struct	s_lst
 {
@@ -71,7 +70,6 @@ typedef struct	s_lem
 	char	end;
 	char	link;
 	char	*output;
-	char	**map;
 	int		num_ants;
 }				t_lem;
 
