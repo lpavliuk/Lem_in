@@ -47,6 +47,7 @@
 # define START lmn->start
 # define END lmn->end
 # define LINK lmn->link
+# define COUNT lmn->count
 
 typedef struct	s_lst
 {
@@ -68,6 +69,7 @@ typedef struct	s_lem
 	char	*line;
 	char	start;
 	char	end;
+	int 	count;
 	char	link;
 	char	*output;
 	int		num_ants;

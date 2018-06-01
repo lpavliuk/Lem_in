@@ -112,12 +112,13 @@ int			main(void)
 	LINK = 0;
 	START = 0;
 	END = 0;
+	COUNT = 0;
 	check_input(lmn, lst);
 //	creat_map_of_links(lmn, lst, 0);
 	algorithm(lmn, lst);
 //	write_output(lmn, NULL);
 	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 	write_list(lst, lmn);
-	system("leaks lem-in");
+//	system("leaks lem-in");
 	return (0);
 }

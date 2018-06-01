@@ -39,6 +39,7 @@ static int	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 	str = ft_strsplit(LINKS, ' ');
 	while (str[i] != 0)
 	{
+//		ft_printf("str: %s\n", str[i]);
 		tmp = all;
 		while (tmp)
 		{
@@ -46,6 +47,10 @@ static int	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 			{
 				tmp->iter = ITER + 1;
 				tmp->prev = ROOM;
+				if (!COUNT)
+					tmp->iter = ITER + 1;
+				if (COUNT < ITER + 1)
+					return (0);
 				ft_printf("%s - ", ROOM);
 				if (find_way(lmn, tmp, all))
 				{
@@ -70,6 +75,7 @@ static int	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 				tmp->iter = ITER + 1;
 				tmp->prev = ROOM;
 				ft_printf("%s - ", ROOM);
+//				find_way(lmn, tmp, all);
 				if (find_way(lmn, tmp, all))
 				{
 					freeshka_str(str);
