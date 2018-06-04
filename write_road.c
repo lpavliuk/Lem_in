@@ -90,7 +90,6 @@ void			write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i)
 		}
 		i++;
 	}
-	ft_printf("best room: %s\niter: %d\n", best->room, best->iter);
 	write_to_road(lmn, all, best);
 	freeshka_str(str);
 }

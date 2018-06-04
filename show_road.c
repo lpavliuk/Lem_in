@@ -14,40 +14,33 @@
 
 void	show_road(t_lem *lmn, t_lst *lst)
 {
-//	int 	i;
-//	int 	all;
-//	char	**str;
-//	t_lst	*end;
-//	t_lst	*tmp;
-//
-//	i = 0;
-//	str = ft_strsplit(ROAD, ' ');
-//	end = lst;
-//	all = 1;
-//	while (end)
-//	{
-//		if (end->en == 1)
-//			break ;
-//		end = end->next;
-//	}
-//	while (end->ant != NUM_A)
-//	{
-//		i = 1;
-//		while (str[i] != 0)
-//		{
-//			tmp = lst;
-//			while (tmp)
-//			{
-//				if (!ft_strcmp(tmp->room, str[i]))
-//				{
-//					if (i = 1)
-//						NUMBER = all;
-//					ft_printf("L%d-%s", NUMBER, tmp->room);
-//					NUMBER = ft
-//				}
-//			}
-//			i++;
-//			all++;
-//		}
-//	}
+	int 	i;
+	int 	all;
+	char	**str;
+	t_road	*step;
+	t_lst	*tmp;
+
+	i = 0;
+	all = 1;
+	while (all <= NUM_A)
+	{
+		step = L_ROAD->next;
+		while (step)
+		{
+			if (!step->link->ant)
+			{
+				step->link->ant++;
+				step->link->number = all;
+				ft_printf("L%d-%s", NUMBER, step->link->room);
+			}
+			else
+			{
+				step->link->next->ant++;
+				step->link->next->number = step->link->number;
+				ft_printf("L%d-%s", step->link->number, step->next->link->room);
+			}
+			step = step->next;
+		}
+		all++;
+	}
 }

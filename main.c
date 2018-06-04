@@ -133,6 +133,7 @@ int			main(void)
 //	show_road(lmn, lst);
 	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 	write_list(lst, lmn);
-	system("leaks lem-in");
+	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
+//	system("leaks lem-in");
 	return (0);
 }
