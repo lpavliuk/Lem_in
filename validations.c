@@ -70,8 +70,6 @@ static void	comnt_or_comnd(t_lem *lmn, t_lst *lst, int i)
 		else
 			write_output(lmn, LINE);
 	}
-	else if (!NUM_A && LINE[i] == '#')
-		ft_error(ERR_0);
 	else
 		write_output(lmn, LINE);
 }

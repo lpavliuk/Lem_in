@@ -34,6 +34,7 @@
 # define X lst->x
 # define Y lst->y
 # define NUMBER lst->number
+# define WAS lst->was
 # define ANT lst->ant
 # define ITER lst->iter
 # define PREV lst->prev
@@ -50,7 +51,6 @@
 # define LINK lmn->link
 # define ROAD lmn->road
 # define COUNT lmn->count
-# define ALL_VAR lmn->all_var
 
 typedef struct	s_lst
 {
@@ -58,12 +58,13 @@ typedef struct	s_lst
 	char			ant;
 	char			*links;
 	int				number;
+	char 			was;
 	int				x;
 	int				y;
-	int 			iter;
+	int				iter;
 	char			str;
 	char			en;
-	char 			*prev;
+	char			*prev;
 	struct s_lst	*next;
 }				t_lst;
 
@@ -75,9 +76,8 @@ typedef struct	s_lem
 	char	link;
 	char	*output;
 	int		num_ants;
-	char 	**road;
-	int 	count;
-	int 	all_var;
+	char	**road;
+//	int		count;
 }				t_lem;
 
 void			ft_error(char *error);

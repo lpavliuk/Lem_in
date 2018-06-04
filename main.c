@@ -17,7 +17,8 @@
  ************************************************/
 void		write_list(t_lst *lst, t_lem *lmn)
 {
-	t_lst *tmp;
+	int		c;
+	t_lst	*tmp;
 
 	tmp = lst;
 	while (lst)
@@ -42,6 +43,16 @@ void		write_list(t_lst *lst, t_lem *lmn)
 		ft_printf("-----------------------------------\n");
 		lst = NEXT;
 	}
+	ft_printf("----------------ROAD----------------\n");
+	c = 0;
+	while (ROAD[c] != 0)
+	{
+		ft_printf("%s", ROAD[c]);
+		c++;
+		if (ROAD[c] != 0)
+			ft_printf("-");
+	}
+	ft_printf("\n");
 }
 /************************************************/
 
@@ -79,6 +90,7 @@ void		write_output(t_lem *lmn, char *str)
 	}
 	else
 		ft_printf(OUTPUT);
+	ft_printf("\n");
 }
 
 void		ft_error(char *error)
@@ -96,6 +108,7 @@ int			main(void)
 	lst = malloc(sizeof(t_lst));
 	ROOM = NULL;
 	NUMBER = 0;
+	WAS = 0;
 	X = 0;
 	Y = 0;
 	ANT = 0;
@@ -113,11 +126,11 @@ int			main(void)
 	START = 0;
 	END = 0;
 	ROAD = 0;
-	COUNT = 0;
-	ALL_VAR = 0;
+//	COUNT = 0;
 	check_input(lmn, lst);
 	algorithm(lmn, lst);
 //	write_output(lmn, NULL);
+//	show_road(lmn, lst);
 	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 	write_list(lst, lmn);
 	system("leaks lem-in");

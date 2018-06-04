@@ -19,6 +19,7 @@ t_lst		*lstnew(t_lst *lst)
 	NEXT = malloc(sizeof(t_lst));
 	NEXT->room = NULL;
 	NEXT->number = 0;
+	NEXT->was = 0;
 	NEXT->x = 0;
 	NEXT->y = 0;
 	NEXT->str = 0;

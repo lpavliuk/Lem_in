@@ -63,7 +63,6 @@ static void	write_to_road(t_lem *lmn, t_lst *lst, t_lst *best)
 
 void		write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i)
 {
-	int		c;
 	char	**str;
 	t_lst	*tmp;
 	t_lst	*best;
@@ -89,11 +88,5 @@ void		write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i)
 	}
 	ft_printf("best room: %s\niter: %d\n", best->room, best->iter);
 	write_to_road(lmn, all, best);
-	c = 0;
-	while (ROAD[c] != 0)
-	{
-		ft_printf("%s\n", ROAD[c]);
-		c++;
-	}
 	freeshka_str(str);
 }

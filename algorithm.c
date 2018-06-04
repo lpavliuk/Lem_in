@@ -46,9 +46,9 @@ static int	work_while(t_lem *lmn, t_lst *lst, t_lst *all, char *str)
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->room, str) && (tmp->en == 1
-			|| (tmp->str != 1 && ft_strcmp(ROOM, str)
-			&& ((PREV && ft_strcmp(PREV, str)) || !PREV))))
+			|| (tmp->str != 1 && !tmp->was)))
 		{
+			tmp->was = 1;
 			tmp->iter = ITER + 1;
 			tmp->prev = ROOM;
 			if (tmp->en == 1)
@@ -66,12 +66,11 @@ void		find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 	char	**str;
 
 	i = 0;
-	if (EN == 1 || COUNT > lmn->all_var || !LINKS)
+	if (EN == 1 || !LINKS)
 		return ;
 	str = ft_strsplit(LINKS, ' ');
 	while (str[i] != 0)
 	{
-		COUNT++;
 		if (work_while(lmn, lst, all, str[i]))
 		{
 			freeshka_str(str);
@@ -87,7 +86,6 @@ void		algorithm(t_lem *lmn, t_lst *lst)
 	t_lst	*tmp;
 
 	tmp = lst;
-	ALL_VAR = lstlen(lst) * lstlen(lst);
 	while (tmp)
 	{
 		if (tmp->str == 1)
