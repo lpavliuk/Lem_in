@@ -90,7 +90,6 @@ t_lst			*lstnew(t_lst *lst);
 int				lstlen(t_lst *lst);
 void			check_room_in_list(t_lst *lst, t_lst *new);
 int				check_room_or_link(t_lem *lmn, t_lst *lst, int i);
-//void			creat_map_of_links(t_lem *lmn, t_lst *lst, int i);
 void			algorithm(t_lem *lmn, t_lst *lst);
 void			freeshka_str(char **str);
 void			write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i);

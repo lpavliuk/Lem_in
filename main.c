@@ -116,7 +116,6 @@ int			main(void)
 	COUNT = 0;
 	ALL_VAR = 0;
 	check_input(lmn, lst);
-//	creat_map_of_links(lmn, lst, 0);
 	algorithm(lmn, lst);
 //	write_output(lmn, NULL);
 	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
