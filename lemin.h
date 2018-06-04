@@ -27,7 +27,7 @@
 # define ERR_10 "{red}Error: {blue}coordinates for room is {red}repeating!\n"
 # define ERR_11 "{red}Error: {blue}incorrect input {red}the start room{blue}!\n"
 # define ERR_12 "{red}Error: {blue}incorrect input {red}the end room{blue}!\n"
-# define ERR_13 "{red}Error: {blue}links for room is {red}repeating!\n"
+# define ERR_13 "{red}Error: {blue}links for room are {red}repeating!\n"
 # define ERR_14 "{red}Error: {yellow}there isn't links between start & end!\n"
 
 # define ROOM lst->room
@@ -49,7 +49,7 @@
 # define START lmn->start
 # define END lmn->end
 # define LINK lmn->link
-# define ROAD lmn->road
+# define L_ROAD lmn->links_road
 # define COUNT lmn->count
 
 typedef struct	s_lst
@@ -68,6 +68,12 @@ typedef struct	s_lst
 	struct s_lst	*next;
 }				t_lst;
 
+typedef struct	s_road
+{
+	t_lst			*link;
+	struct s_road	*next;
+}				t_road;
+
 typedef struct	s_lem
 {
 	char	*line;
@@ -76,7 +82,7 @@ typedef struct	s_lem
 	char	link;
 	char	*output;
 	int		num_ants;
-	char	**road;
+	t_road	*links_road;
 //	int		count;
 }				t_lem;
 
@@ -94,5 +100,6 @@ void			algorithm(t_lem *lmn, t_lst *lst);
 void			freeshka_str(char **str);
 void			write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i);
 void			find_way(t_lem *lmn, t_lst *lst, t_lst *all);
+//void 			write_to_list(t_lem *lmn, t_lst *lst);
 
 #endif

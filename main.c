@@ -17,10 +17,6 @@
  ************************************************/
 void		write_list(t_lst *lst, t_lem *lmn)
 {
-	int		c;
-	t_lst	*tmp;
-
-	tmp = lst;
 	while (lst)
 	{
 		if (STR)
@@ -44,12 +40,11 @@ void		write_list(t_lst *lst, t_lem *lmn)
 		lst = NEXT;
 	}
 	ft_printf("----------------ROAD----------------\n");
-	c = 0;
-	while (ROAD[c] != 0)
+	while (L_ROAD)
 	{
-		ft_printf("%s", ROAD[c]);
-		c++;
-		if (ROAD[c] != 0)
+		ft_printf("%s", L_ROAD->link->room);
+		L_ROAD = L_ROAD->next;
+		if (L_ROAD)
 			ft_printf("-");
 	}
 	ft_printf("\n");
@@ -89,8 +84,10 @@ void		write_output(t_lem *lmn, char *str)
 		free(tmp);
 	}
 	else
+	{
 		ft_printf(OUTPUT);
-	ft_printf("\n");
+		ft_printf("\n");
+	}
 }
 
 void		ft_error(char *error)
@@ -125,10 +122,13 @@ int			main(void)
 	LINK = 0;
 	START = 0;
 	END = 0;
-	ROAD = 0;
+	L_ROAD = malloc(sizeof(t_road));
+	L_ROAD->link = NULL;
+	L_ROAD->next = NULL;
 //	COUNT = 0;
 	check_input(lmn, lst);
 	algorithm(lmn, lst);
+//	write_to_list(lmn, lst);
 //	write_output(lmn, NULL);
 //	show_road(lmn, lst);
 	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!

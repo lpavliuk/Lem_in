@@ -25,11 +25,11 @@ void		freeshka_str(char **str)
 	free(str);
 }
 
-static void	check_end(t_lst *lst)
+static void	check_start(t_lst *lst)
 {
 	while (lst)
 	{
-		if (EN == 1)
+		if (STR == 1)
 		{
 			if (ITER == 0)
 				ft_error(ERR_14);
@@ -38,45 +38,31 @@ static void	check_end(t_lst *lst)
 	}
 }
 
-static int	work_while(t_lem *lmn, t_lst *lst, t_lst *all, char *str)
-{
-	t_lst	*tmp;
-
-	tmp = all;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->room, str) && (tmp->en == 1
-			|| (tmp->str != 1 && !tmp->was)))
-		{
-			tmp->was = 1;
-			tmp->iter = ITER + 1;
-			tmp->prev = ROOM;
-			if (tmp->en == 1)
-				return (1);
-			find_way(lmn, tmp, all);
-		}
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
 void		find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 {
 	int		i;
+	t_lst	*tmp;
 	char	**str;
 
-	i = 0;
-	if (EN == 1 || !LINKS)
+	i = -1;
+	if (STR == 1 || !LINKS)
 		return ;
 	str = ft_strsplit(LINKS, ' ');
-	while (str[i] != 0)
+	while (str[++i] != 0)
 	{
-		if (work_while(lmn, lst, all, str[i]))
+		tmp = all;
+		while (tmp)
 		{
-			freeshka_str(str);
-			return ;
+			if (!ft_strcmp(tmp->room, str[i]) && (tmp->str == 1 ||
+				(tmp->en != 1 && (!tmp->was || tmp->iter > ITER))))
+			{
+				tmp->was = 1;
+				tmp->iter = ITER + 1;
+				tmp->prev = ROOM;
+				find_way(lmn, tmp, all);
+			}
+			tmp = tmp->next;
 		}
-		i++;
 	}
 	freeshka_str(str);
 }
@@ -88,16 +74,16 @@ void		algorithm(t_lem *lmn, t_lst *lst)
 	tmp = lst;
 	while (tmp)
 	{
-		if (tmp->str == 1)
+		if (tmp->en == 1)
 			break ;
 		tmp = tmp->next;
 	}
 	find_way(lmn, tmp, lst);
-	check_end(lst);
+	check_start(lst);
 	tmp = lst;
 	while (tmp)
 	{
-		if (tmp->en == 1)
+		if (tmp->str == 1)
 			break ;
 		tmp = tmp->next;
 	}
