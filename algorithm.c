@@ -38,164 +38,117 @@ static void	check_end(t_lst *lst)
 	}
 }
 
-static int	find_way(t_lem *lmn, t_lst *lst, t_lst *all)
-{
-	int		i;
-	char	**str;
-	t_lst	*tmp;
-
-	if (EN == 1)
-		return (1);
-	if (!LINKS)
-		return (0);
-	i = 0;
-	str = ft_strsplit(LINKS, ' ');
-	while (str[i] != 0)
-	{
-		tmp = all;
-		while (tmp)
-		{
-			if (!ft_strcmp(tmp->room, str[i]) && tmp->en == 1)
-			{
-				if (tmp->iter && tmp->iter < ITER)
-					break ;
-				tmp->iter = ITER + 1;
-				tmp->prev = ROOM;
-				ft_printf("%s - ", ROOM);
-				find_way(lmn, tmp, all);
-				if (find_way(lmn, tmp, all))
-				{
-					freeshka_str(str);
-					return (1);
-				}
-			}
-			tmp = tmp->next;
-		}
-		i++;
-	}
-	i = 0;
-	while (str[i] != 0)
-	{
-		tmp = all;
-		while (tmp)
-		{
-			if (!ft_strcmp(tmp->room, str[i]) && tmp->str != 1
-				&& ft_strcmp(ROOM, str[i])
-				&& ((PREV && ft_strcmp(PREV, str[i])) || !PREV))
-			{
-				tmp->iter = ITER + 1;
-				tmp->prev = ROOM;
-				ft_printf("%s - ", ROOM);
-				find_way(lmn, tmp, all);
-				if (find_way(lmn, tmp, all))
-				{
-					freeshka_str(str);
-					return (1);
-				}
-			}
-			tmp = tmp->next;
-		}
-		i++;
-	}
-	freeshka_str(str);
-	return (0);
-}
-//static void	find_way(t_lem *lmn, t_lst *lst, t_lst *all, int i)
+//static int find_end(t_lem *lmn, t_lst *lst, t_lst *all, char **str)
 //{
+//	int		i;
+//	t_lst	*tmp;
+//
+//	i = 0;
+//	while (str[i] != 0)
+//	{
+//		tmp = all;
+//		COUNT++;
+//		while (tmp)
+//		{
+//			if (!ft_strcmp(tmp->room, str[i]) && tmp->en == 1)
+//			{
+//				ft_printf("OK!\n");
+//				tmp->iter = ITER + 1;
+//				tmp->prev = ROOM;
+//				ft_printf("%s - ", ROOM);
+//			}
+//			tmp = tmp->next;
+//		}
+//		i++;
+//	}
+//	return (0);
+//}
+//
+//int			find_way(t_lem *lmn, t_lst *lst, t_lst *all)
+//{
+//	int		i;
 //	char	**str;
 //	t_lst	*tmp;
 //
-//	if (EN == 1 || !LINKS)
-//		return ;
+//	if (EN == 1)
+//		return (1);
+//	if (!LINKS)
+//		return (0);
+//	if (COUNT > ALL_VAR)
+//		return (0);
 //	str = ft_strsplit(LINKS, ' ');
+//	if (find_end(lmn, lst, all, str))
+//		return (1);
+//	i = 0;
 //	while (str[i] != 0)
 //	{
 //		tmp = all;
 //		while (tmp)
 //		{
-//			if (!ft_strcmp(tmp->room, str[i]) && (tmp->en == 1 || (tmp->str != 1
+//			if (!ft_strcmp(tmp->room, str[i]) && tmp->str != 1
 //				&& ft_strcmp(ROOM, str[i])
-//				&& ((PREV && ft_strcmp(PREV, str[i])) || !PREV))))
+//				&& ((PREV && ft_strcmp(PREV, str[i])) || !PREV))
 //			{
 //				tmp->iter = ITER + 1;
 //				tmp->prev = ROOM;
-//				find_way(lmn, tmp, all, 0);
+//				ft_printf("%s - ", ROOM);
+//				find_way(lmn, tmp, all);
+//				if (find_way(lmn, tmp, all))
+//				{
+//					freeshka_str(str);
+//					return (1);
+//				}
 //			}
 //			tmp = tmp->next;
 //		}
 //		i++;
 //	}
 //	freeshka_str(str);
+//	return (0);
 //}
 
-static void	write_to_road(t_lem *lmn, t_lst *lst, t_lst *best)
+static int	work_while(t_lem *lmn, t_lst *lst, t_lst *all, char *str)
 {
-	int		i;
-	char 	*temp;
 	t_lst	*tmp;
-	char	*ping;
 
-	i = best->iter;
-	ping = best->prev;
-	ROAD = (char **)malloc(sizeof(char *) * (i + 1));
-	ROAD[i] = 0;
-	i--;
-	ROAD[i] = ft_strdup(best->room);
-	i--;
-	while (i >= 0)
+	tmp = all;
+	while (tmp)
 	{
-		tmp = lst;
-		while (tmp)
+		if (!ft_strcmp(tmp->room, str) && (tmp->en == 1
+			|| (tmp->str != 1 && ft_strcmp(ROOM, str)
+			&& ((PREV && ft_strcmp(PREV, str)) || !PREV))))
 		{
-			if (!ft_strcmp(tmp->room, ping))
-			{
-				ROAD[i] = (char *)malloc(sizeof(char) * (ft_strlen(tmp->room) + 1));
-				ROAD[i] = ft_strdup(tmp->room);
-				if (tmp->prev)
-					ping = tmp->prev;
-				else
-					return ;
-				break ;
-			}
-			tmp = tmp->next;
+			tmp->iter = ITER + 1;
+			tmp->prev = ROOM;
+			if (tmp->en == 1)
+				return (1);
+			find_way(lmn, tmp, all);
 		}
-		i--;
+		tmp = tmp->next;
 	}
+	return (0);
 }
 
-static void	write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i)
+void		find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 {
-	int 	c;
-	char 	**str;
-	t_lst	*tmp;
-	t_lst	*best;
-	int 	steps;
+	int 	i;
+	char	**str;
 
-	steps = 0;
+	i = 0;
+	if (EN == 1 || COUNT > lmn->all_var || !LINKS)
+		return ;
 	str = ft_strsplit(LINKS, ' ');
 	while (str[i] != 0)
 	{
-		tmp = all;
-		while (tmp)
+		COUNT++;
+		if (work_while(lmn, lst, all, str[i]))
 		{
-			if (!ft_strcmp(tmp->room, str[i]) && tmp->iter
-					&& (!steps || steps >= tmp->iter))
-			{
-				steps = tmp->iter;
-				best = tmp;
-			}
-			tmp = tmp->next;
+			freeshka_str(str);
+			return;
 		}
 		i++;
 	}
-	ft_printf("best: %s %d\n", best->room, best->iter);
-	write_to_road(lmn, all, best);
-	c = 0;
-	while (ROAD[c] != 0)
-	{
-		ft_printf("%s\n", ROAD[c]);
-		c++;
-	}
+	freeshka_str(str);
 }
 
 void		algorithm(t_lem *lmn, t_lst *lst)
@@ -203,6 +156,7 @@ void		algorithm(t_lem *lmn, t_lst *lst)
 	t_lst	*tmp;
 
 	tmp = lst;
+	ALL_VAR = lstlen(lst) * lstlen(lst);
 	while (tmp)
 	{
 		if (tmp->str == 1)
