@@ -124,13 +124,14 @@ int			main(void)
 	END = 0;
 	L_ROAD = malloc(sizeof(t_road));
 	L_ROAD->link = NULL;
+	L_ROAD->prev = NULL;
+	L_ROAD->ant = 0;
 	L_ROAD->next = NULL;
 //	COUNT = 0;
 	check_input(lmn, lst);
 	algorithm(lmn, lst);
-//	write_to_list(lmn, lst);
 //	write_output(lmn, NULL);
-//	show_road(lmn, lst);
+	show_road(lmn, lst);
 	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 	write_list(lst, lmn);
 	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!

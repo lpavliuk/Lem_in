@@ -71,6 +71,8 @@ typedef struct	s_lst
 typedef struct	s_road
 {
 	t_lst			*link;
+	struct s_road	*prev;
+	int				ant;
 	struct s_road	*next;
 }				t_road;
 
@@ -100,6 +102,6 @@ void			algorithm(t_lem *lmn, t_lst *lst);
 void			freeshka_str(char **str);
 void			write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i);
 void			find_way(t_lem *lmn, t_lst *lst, t_lst *all);
-//void 			write_to_list(t_lem *lmn, t_lst *lst);
+void			show_road(t_lem *lmn, t_lst *lst);
 
 #endif

@@ -18,6 +18,8 @@ static t_road	*new_road_elem(t_road *all)
 		all = all->next;
 	all->next = malloc(sizeof(t_road));
 	all->next->link = NULL;
+	all->next->ant = 0;
+	all->next->prev = NULL;
 	all->next->next = NULL;
 	return (all->next);
 }
