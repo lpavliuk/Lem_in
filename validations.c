@@ -67,6 +67,8 @@ static void	comnt_or_comnd(t_lem *lmn, t_lst *lst, int i)
 			ft_error(ERR_1);
 		else if (ft_strstr(LINE, "##end"))
 			ft_error(ERR_2);
+		else if (LINE[i + 1] == '#')
+			ft_error(ERR_8);
 		else
 			write_output(lmn, LINE);
 	}
@@ -89,7 +91,7 @@ int			check_room_or_link(t_lem *lmn, t_lst *lst, int i)
 			space++;
 		i++;
 	}
-	if (!def && space == 2 && !LINK)
+	if (!def && space == 2 && !LINK && LINE[0] != 'L')
 		write_room(lmn, lst);
 	else if (!space && def == 1 && END && START)
 		write_link(lmn, lst);

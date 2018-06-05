@@ -93,16 +93,11 @@ void		write_output(t_lem *lmn, char *str)
 void		ft_error(char *error)
 {
 	ft_printf(error);
-//	system("leaks lem-in");
 	exit(0);
 }
 
-int			main(void)
+void		first_step(t_lst *lst, t_lem *lmn)
 {
-	t_lem *lmn;
-	t_lst *lst;
-
-	lst = malloc(sizeof(t_lst));
 	ROOM = NULL;
 	NUMBER = 0;
 	WAS = 0;
@@ -115,7 +110,6 @@ int			main(void)
 	PREV = NULL;
 	LINKS = NULL;
 	NEXT = NULL;
-	lmn = malloc(sizeof(t_lem));
 	LINE = NULL;
 	OUTPUT = NULL;
 	NUM_A = 0;
@@ -127,14 +121,23 @@ int			main(void)
 	L_ROAD->prev = NULL;
 	L_ROAD->ant = 0;
 	L_ROAD->next = NULL;
-//	COUNT = 0;
+}
+
+int			main(void)
+{
+	t_lem *lmn;
+	t_lst *lst;
+
+	lst = malloc(sizeof(t_lst));
+	lmn = malloc(sizeof(t_lem));
+	first_step(lst, lmn);
 	check_input(lmn, lst);
 	algorithm(lmn, lst);
-//	write_output(lmn, NULL);
+	write_output(lmn, NULL);
 	show_road(lmn, lst);
-	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
-	write_list(lst, lmn);
-	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
+//	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
+//	write_list(lst, lmn);
+//	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 //	system("leaks lem-in");
 	return (0);
 }

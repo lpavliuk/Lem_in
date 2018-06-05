@@ -44,18 +44,3 @@ void		check_room_in_list(t_lst *lst, t_lst *new)
 			lst = NEXT;
 	}
 }
-
-int			lstlen(t_lst *lst)
-{
-	int i;
-
-	i = 0;
-	if (!lst)
-		return (0);
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}

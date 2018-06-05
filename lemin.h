@@ -50,7 +50,6 @@
 # define END lmn->end
 # define LINK lmn->link
 # define L_ROAD lmn->links_road
-# define COUNT lmn->count
 
 typedef struct	s_lst
 {
@@ -85,7 +84,6 @@ typedef struct	s_lem
 	char	*output;
 	int		num_ants;
 	t_road	*links_road;
-//	int		count;
 }				t_lem;
 
 void			ft_error(char *error);
@@ -95,7 +93,6 @@ void			write_output(t_lem *lmn, char *str);
 void			write_room(t_lem *lmn, t_lst *lst);
 void			write_link(t_lem *lmn, t_lst *lst);
 t_lst			*lstnew(t_lst *lst);
-int				lstlen(t_lst *lst);
 void			check_room_in_list(t_lst *lst, t_lst *new);
 int				check_room_or_link(t_lem *lmn, t_lst *lst, int i);
 void			algorithm(t_lem *lmn, t_lst *lst);
