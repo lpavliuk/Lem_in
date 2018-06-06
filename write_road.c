@@ -63,7 +63,7 @@ static void		write_to_road(t_lem *lmn, t_lst *lst, t_lst *best)
 	all->link = tmp;
 	all = new_road_elem(L_ROAD);
 	all->link = best;
-	if (best->prev && write_to_list(lmn, lst, best->prev))
+	if (best->en != 1 && write_to_list(lmn, lst, best->prev))
 		return ;
 }
 
@@ -75,22 +75,22 @@ void			write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i)
 	int		steps;
 
 	steps = 0;
+	best = NULL;
 	str = ft_strsplit(LINKS, ' ');
-	while (str[i] != 0)
+	while (str[++i] != 0)
 	{
 		tmp = all;
 		while (tmp)
 		{
 			if (!ft_strcmp(tmp->room, str[i])
 				&& (tmp->iter || (!tmp->iter && tmp->en == 1))
-				&& (!steps || steps >= tmp->iter))
+				&& ((!steps && !best) || steps >= tmp->iter))
 			{
 				steps = tmp->iter;
 				best = tmp;
 			}
 			tmp = tmp->next;
 		}
-		i++;
 	}
 	write_to_road(lmn, all, best);
 	freeshka_str(str);

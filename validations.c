@@ -95,7 +95,7 @@ int			check_room_or_link(t_lem *lmn, t_lst *lst, int i)
 		write_room(lmn, lst);
 	else if (!space && def == 1 && END && START)
 		write_link(lmn, lst);
-	else if (def && START && END)
+	else if (def && START && END && !LINK)
 		ft_error(ERR_7);
 	else if (space && START && END)
 		ft_error(ERR_6);
@@ -113,7 +113,10 @@ void		check_input(t_lem *lmn, t_lst *lst)
 		else if (LINE[0] == '#')
 			comnt_or_comnd(lmn, lst, 1);
 		else if (check_room_or_link(lmn, lst, 0))
-			ft_error(ERR_8);
+		{
+			free(LINE);
+			break ;
+		}
 		free(LINE);
 	}
 	if (!LINK)

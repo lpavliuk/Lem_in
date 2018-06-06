@@ -54,7 +54,7 @@ void		find_way(t_lem *lmn, t_lst *lst, t_lst *all)
 		while (tmp)
 		{
 			if (!ft_strcmp(tmp->room, str[i]) && (tmp->str == 1 ||
-				(tmp->en != 1 && (!tmp->was || tmp->iter > ITER))))
+					!tmp->was || tmp->iter > ITER))
 			{
 				tmp->was = 1;
 				tmp->iter = ITER + 1;
@@ -78,6 +78,7 @@ void		algorithm(t_lem *lmn, t_lst *lst)
 			break ;
 		tmp = tmp->next;
 	}
+	tmp->was = 1;
 	find_way(lmn, tmp, lst);
 	check_start(lst);
 	tmp = lst;
@@ -87,5 +88,5 @@ void		algorithm(t_lem *lmn, t_lst *lst)
 			break ;
 		tmp = tmp->next;
 	}
-	write_road(lmn, tmp, lst, 0);
+	write_road(lmn, tmp, lst, -1);
 }

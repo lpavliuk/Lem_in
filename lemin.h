@@ -15,20 +15,20 @@
 
 # include "libft/libft.h"
 
-# define ERR_0 "{red}Error: {blue}wrong number of {red}ants{blue}!\n"
-# define ERR_1 "{red}Error: {blue}wrong command {yellow}##start{blue}!\n"
-# define ERR_2 "{red}Error: {blue}wrong command {yellow}##end{blue}!\n"
-# define ERR_3 "{red}Error: {blue}command {yellow}##start {blue}was repeated!\n"
-# define ERR_4 "{red}Error: {blue}command {yellow}##end {blue}was repeated!\n"
-# define ERR_6 "{red}Error: {blue}incorrect input {red}the room{blue}!\n"
-# define ERR_7 "{red}Error: {blue}incorrect input {red}the link{blue}!\n"
-# define ERR_8 "{red}Error: {blue}incorrect input!\n"
-# define ERR_9 "{red}Error: {blue}name for room is {red}repeating!\n"
-# define ERR_10 "{red}Error: {blue}coordinates for room is {red}repeating!\n"
-# define ERR_11 "{red}Error: {blue}incorrect input {red}the start room{blue}!\n"
-# define ERR_12 "{red}Error: {blue}incorrect input {red}the end room{blue}!\n"
-# define ERR_13 "{red}Error: {blue}links for room are {red}repeating!\n"
-# define ERR_14 "{red}Error: {yellow}there isn't links between start & end!\n"
+# define ERR_0 "{red}ERROR: {blue}wrong number of {red}ants{blue}!\n"
+# define ERR_1 "{red}ERROR: {blue}wrong command {yellow}##start{blue}!\n"
+# define ERR_2 "{red}ERROR: {blue}wrong command {yellow}##end{blue}!\n"
+# define ERR_3 "{red}ERROR: {blue}command {yellow}##start {blue}was repeated!\n"
+# define ERR_4 "{red}ERROR: {blue}command {yellow}##end {blue}was repeated!\n"
+# define ERR_6 "{red}ERROR: {blue}incorrect input {red}the room{blue}!\n"
+# define ERR_7 "{red}ERROR: {blue}incorrect input {red}the link{blue}!\n"
+# define ERR_8 "{red}ERROR: {blue}incorrect input!\n"
+# define ERR_9 "{red}ERROR: {blue}name for room is {red}repeating!\n"
+# define ERR_10 "{red}ERROR: {blue}coordinates for room is {red}repeating!\n"
+# define ERR_11 "{red}ERROR: {blue}incorrect input {red}the start room{blue}!\n"
+# define ERR_12 "{red}ERROR: {blue}incorrect input {red}the end room{blue}!\n"
+# define ERR_13 "{red}ERROR: {blue}links for room are {red}repeating!\n"
+# define ERR_14 "{red}ERROR: {yellow}there isn't links between start & end!\n"
 
 # define ROOM lst->room
 # define X lst->x
@@ -57,7 +57,7 @@ typedef struct	s_lst
 	char			ant;
 	char			*links;
 	int				number;
-	char 			was;
+	char			was;
 	int				x;
 	int				y;
 	int				iter;
