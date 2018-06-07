@@ -15,9 +15,9 @@
 
 # include "libft/libft.h"
 
-# define ERR_0 "{red}ERROR: {blue}wrong number of {red}ants{blue}!\n"
-# define ERR_1 "{red}ERROR: {blue}wrong command {yellow}##start{blue}!\n"
-# define ERR_2 "{red}ERROR: {blue}wrong command {yellow}##end{blue}!\n"
+# define ERR_0 "{red}ERROR: {blue}incorrect number of {red}ants{blue}!\n"
+# define ERR_1 "{red}ERROR: {blue}incorrect command {yellow}##start{blue}!\n"
+# define ERR_2 "{red}ERROR: {blue}incorrect command {yellow}##end{blue}!\n"
 # define ERR_3 "{red}ERROR: {blue}command {yellow}##start {blue}was repeated!\n"
 # define ERR_4 "{red}ERROR: {blue}command {yellow}##end {blue}was repeated!\n"
 # define ERR_6 "{red}ERROR: {blue}incorrect input {red}the room{blue}!\n"
@@ -29,6 +29,8 @@
 # define ERR_12 "{red}ERROR: {blue}incorrect input {red}the end room{blue}!\n"
 # define ERR_13 "{red}ERROR: {blue}links for room are {red}repeating!\n"
 # define ERR_14 "{red}ERROR: {yellow}there isn't links between start & end!\n"
+# define ERR_15 "{red}ERROR: {pink}undefined option, use '-o' for help!\n"
+# define ERR_16 "{red}ERROR: {pink}option must be only ONE!\n"
 
 # define ROOM lst->room
 # define X lst->x
@@ -100,5 +102,9 @@ void			freeshka_str(char **str);
 void			write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i);
 void			find_way(t_lem *lmn, t_lst *lst, t_lst *all);
 void			show_road(t_lem *lmn);
+void			do_link_prev(t_lem *lmn);
+void			bonus(char **str);
+void			show_color_road(t_road *start, t_lem *lmn);
+void			show_col_road(t_lem *lmn);
 
 #endif

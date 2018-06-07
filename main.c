@@ -123,21 +123,27 @@ void		first_step(t_lst *lst, t_lem *lmn)
 	L_ROAD->next = NULL;
 }
 
-int			main(void)
+int			main(int argc, char **argv)
 {
 	t_lem *lmn;
 	t_lst *lst;
 
 	lst = malloc(sizeof(t_lst));
 	lmn = malloc(sizeof(t_lem));
+	if (argc > 1)
+		bonus(argv);
 	first_step(lst, lmn);
 	check_input(lmn, lst);
 	algorithm(lmn, lst);
 	write_output(lmn, NULL);
-	show_road(lmn);
+	if (argc > 1 && (!ft_strcmp(argv[1], "-w")
+					|| !ft_strcmp(argv[1], "--way")))
+		show_color_road(L_ROAD, lmn);
+	else
+		show_road(lmn);
 //	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 //	write_list(lst, lmn);
 //	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
-	system("leaks lem-in");
+//	system("leaks lem-in");
 	return (0);
 }
