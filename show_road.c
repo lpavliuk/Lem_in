@@ -34,7 +34,7 @@ static void	print_col_road(t_road *end, t_lem *lmn)
 		if (end->ant && end->ant <= NUM_A)
 		{
 			ft_printf("{blue}[{red} ");
-			ft_printf("%d ", end->ant);
+			ft_printf("%2d ", end->ant);
 			ft_printf("{blue}]{yellow} -->{blue} ");
 			ft_printf("[%s]", end->link->room);
 			if (end->link->str != 1)

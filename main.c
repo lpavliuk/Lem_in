@@ -12,45 +12,6 @@
 
 #include "lemin.h"
 
-/************************************************
- *  CHECK LIST! DELETE IT LATER!
- ************************************************/
-void		write_list(t_lst *lst, t_lem *lmn)
-{
-	while (lst)
-	{
-		if (STR)
-			ft_printf("START!\n");
-		if (EN)
-			ft_printf("END!\n");
-		ft_printf("---------[%s]--------\n", ROOM);
-//		ft_printf("N: %d\n", NUMBER);
-//		ft_printf("x: %d\ny: %d\n", X, Y);
-		if (STR)
-			ft_printf("start: %d\n", STR);
-		if (EN)
-			ft_printf("end: %d\n", EN);
-		ft_printf("prev room: %s\n", PREV);
-		ft_printf("iter: %d\n", ITER);
-		if (LINKS)
-			ft_printf("links: %s\n", LINKS);
-		else
-			ft_printf("links: (null)\n");
-		ft_printf("-----------------------------------\n");
-		lst = NEXT;
-	}
-	ft_printf("----------------ROAD----------------\n");
-	while (L_ROAD)
-	{
-		ft_printf("%s", L_ROAD->link->room);
-		L_ROAD = L_ROAD->next;
-		if (L_ROAD)
-			ft_printf("-");
-	}
-	ft_printf("\n");
-}
-/************************************************/
-
 int			digit_is(char *str)
 {
 	int i;
@@ -130,20 +91,24 @@ int			main(int argc, char **argv)
 
 	lst = malloc(sizeof(t_lst));
 	lmn = malloc(sizeof(t_lem));
+	if (argc > 2)
+		check_flags(argc, argv);
 	if (argc > 1)
 		bonus(argv);
 	first_step(lst, lmn);
 	check_input(lmn, lst);
 	algorithm(lmn, lst);
-	write_output(lmn, NULL);
+	if (argc > 1 && (!ft_strcmp(argv[1], "-l")
+			|| !ft_strcmp(argv[1], "--list") || (argv[2] &&
+			(!ft_strcmp(argv[2], "-l") || !ft_strcmp(argv[2], "--list")))))
+		show_list(lst, lmn);
+	else
+		write_output(lmn, NULL);
 	if (argc > 1 && (!ft_strcmp(argv[1], "-w")
-					|| !ft_strcmp(argv[1], "--way")))
+					|| !ft_strcmp(argv[1], "--way") || (argv[2] &&
+			(!ft_strcmp(argv[2], "-w") || !ft_strcmp(argv[2], "--way")))))
 		show_color_road(L_ROAD, lmn);
 	else
 		show_road(lmn);
-//	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
-//	write_list(lst, lmn);
-//	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
-//	system("leaks lem-in");
 	return (0);
 }

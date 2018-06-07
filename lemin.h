@@ -22,7 +22,7 @@
 # define ERR_4 "{red}ERROR: {blue}command {yellow}##end {blue}was repeated!\n"
 # define ERR_6 "{red}ERROR: {blue}incorrect input {red}the room{blue}!\n"
 # define ERR_7 "{red}ERROR: {blue}incorrect input {red}the link{blue}!\n"
-# define ERR_8 "{red}ERROR: {blue}incorrect input!\n"
+# define ERR_8 "{red}ERROR: {blue}incorrect input data!\n"
 # define ERR_9 "{red}ERROR: {blue}name for room is {red}repeating!\n"
 # define ERR_10 "{red}ERROR: {blue}coordinates for room is {red}repeating!\n"
 # define ERR_11 "{red}ERROR: {blue}incorrect input {red}the start room{blue}!\n"
@@ -30,7 +30,7 @@
 # define ERR_13 "{red}ERROR: {blue}links for room are {red}repeating!\n"
 # define ERR_14 "{red}ERROR: {yellow}there isn't links between start & end!\n"
 # define ERR_15 "{red}ERROR: {pink}undefined option, use '-o' for help!\n"
-# define ERR_16 "{red}ERROR: {pink}option must be only ONE!\n"
+# define ERR_16 "{red}ERROR: {pink}option can be only ONE or '-l' with '-w'!\n"
 
 # define ROOM lst->room
 # define X lst->x
@@ -106,5 +106,7 @@ void			do_link_prev(t_lem *lmn);
 void			bonus(char **str);
 void			show_color_road(t_road *start, t_lem *lmn);
 void			show_col_road(t_lem *lmn);
+void			show_list(t_lst *lst, t_lem *lmn);
+void			check_flags(int argc, char **argv);
 
 #endif
