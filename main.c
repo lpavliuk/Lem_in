@@ -134,10 +134,10 @@ int			main(void)
 	check_input(lmn, lst);
 	algorithm(lmn, lst);
 	write_output(lmn, NULL);
-	show_road(lmn, lst);
+	show_road(lmn);
 //	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
 //	write_list(lst, lmn);
 //	ft_printf("-------------------------------------------------------------\n"); //DELETE IT!
-//	system("leaks lem-in");
+	system("leaks lem-in");
 	return (0);
 }

@@ -27,10 +27,23 @@ static void	do_link_prev(t_lem *lmn)
 	}
 }
 
-void	show_road(t_lem *lmn, t_lst *lst)
+static void	print_road(t_road *end, t_lem *lmn)
+{
+	while (end)
+	{
+		if (end->ant && end->ant <= NUM_A)
+		{
+			ft_printf("L%d-%s", end->ant, end->link->room);
+			if (end->link->str != 1)
+				ft_printf(" ");
+		}
+		end = end->prev;
+	}
+}
+
+void		show_road(t_lem *lmn)
 {
 	t_road	*step;
-	t_road	*end;
 	t_road	*tmp;
 
 	tmp = L_ROAD;
@@ -52,17 +65,7 @@ void	show_road(t_lem *lmn, t_lst *lst)
 				step->ant++;
 			step = step->next;
 		}
-		end = tmp;
-		while (end)
-		{
-			if (end->ant && end->ant <= NUM_A)
-			{
-				ft_printf("L%d-%s", end->ant, end->link->room);
-				if (end->link->str != 1)
-					ft_printf(" ");
-			}
-			end = end->prev;
-		}
+		print_road(tmp, lmn);
 		ft_printf("\n");
 	}
 }

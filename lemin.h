@@ -99,6 +99,6 @@ void			algorithm(t_lem *lmn, t_lst *lst);
 void			freeshka_str(char **str);
 void			write_road(t_lem *lmn, t_lst *lst, t_lst *all, int i);
 void			find_way(t_lem *lmn, t_lst *lst, t_lst *all);
-void			show_road(t_lem *lmn, t_lst *lst);
+void			show_road(t_lem *lmn);
 
 #endif
