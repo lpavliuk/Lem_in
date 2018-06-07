@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-static void	only_digits(t_lem *lmn, t_lst *lst)
+static void	only_digits(t_lem *lmn)
 {
 	int i;
 
@@ -109,7 +109,7 @@ void		check_input(t_lem *lmn, t_lst *lst)
 	while (get_next_line(0, &LINE) > 0)
 	{
 		if (!NUM_A && LINE[0] != '#')
-			only_digits(lmn, lst);
+			only_digits(lmn);
 		else if (LINE[0] == '#')
 			comnt_or_comnd(lmn, lst, 1);
 		else if (check_room_or_link(lmn, lst, 0))
