@@ -13,7 +13,7 @@
 #ifndef LEMIN_H
 # define LEMIN_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 # define ERR_0 "{red}ERROR: {blue}incorrect number of {red}ants{blue}!\n"
 # define ERR_1 "{red}ERROR: {blue}incorrect command {yellow}##start{blue}!\n"

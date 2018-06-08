@@ -6,20 +6,20 @@
 #    By: opavliuk <opavliuk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/26 16:04:15 by opavliuk          #+#    #+#              #
-#    Updated: 2018/05/14 13:31:16 by opavliuk         ###   ########.fr        #
+#    Updated: 2018/06/08 13:37:57 by opavliuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc 
 CFLAGS=-Wall -Werror -Wextra
-SRC=./algorithm.c \
-	./validations.c \
-	./work_with_list.c \
-	./room_and_link.c \
-	./write_road.c \
-	./show_road.c \
-	./main.c \
-	./bonus.c
+SRC=./leminsrc/algorithm.c \
+	./leminsrc/validations.c \
+	./leminsrc/work_with_list.c \
+	./leminsrc/room_and_link.c \
+	./leminsrc/write_road.c \
+	./leminsrc/show_road.c \
+	./leminsrc/main.c \
+	./leminsrc/bonus.c
 	
 OBJ=$(SRC:.c=.o)
 LIB = libft/libft.a
@@ -43,7 +43,7 @@ $(LIB):
 clean:
 	@ rm -f $(OBJ)
 	@ make clean -C libft/
-	@ printf "\e[37;1m[Directories \e[33;1mlem-in/ \e[37;1m&& \e[33;1mlibft/ \e[37;1mis \e[32;1mCLEAN!\e[37;1m]\e[0m🗑\n"
+	@ printf "\e[37;1m[Directories \e[33;1mleminsrc/ \e[37;1m&& \e[33;1mlibft/ \e[37;1mis \e[32;1mCLEAN!\e[37;1m]\e[0m🗑\n"
 
 fclean: clean
 	@ rm -f $(NAME)
