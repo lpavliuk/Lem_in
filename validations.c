@@ -48,7 +48,8 @@ static void	start_and_end(t_lem *lmn, t_lst *lst, char st)
 			ft_error(ERR_4);
 		write_output(lmn, LINE);
 		free(LINE);
-		if (get_next_line(0, &LINE) == 0 && LINE[0] == '\0')
+		if (get_next_line(0, &LINE) && (LINE[0] == '\0'
+				|| LINE[1] == '-'))
 			ft_error(ERR_12);
 		if (++END && check_room_or_link(lmn, lst, 0))
 			ft_error(ERR_12);
